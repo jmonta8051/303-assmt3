@@ -24,6 +24,8 @@ public:
         this->size = 0;
     }
     
+    T get_data() { return this->data; }
+
     // Add to front
     void push(T value)
     {
@@ -40,7 +42,7 @@ public:
     // Remove from back
     Node* pop() 
     {
-        if (head == tail)
+        if (head == nullptr)
         {
             return nullptr;
         }
@@ -82,33 +84,31 @@ public:
         return size;
     }
 
+    // Moves first to last
     void move_to_rear()
     {
-        Node* temp = head;
-        pop();
+        if (empty() || tail == head) { return; }
 
+        Node* temp = pop();
+        push(temp->data);
     }
 
     // Prints Queue
     void print()
     {
-        T values[size];
+        Queue<T>* temp = new Queue();
 
-        Node* iter = head;
-        int i = 0;
-
-        while (iter != nullptr)
+        while (!empty())
         {
-            // Adds values in first to last order.
-            values[size - 1 - i] = iter->data;
-            iter = iter->next;
-            i++;
-        }
-
-        for (auto j : values)
-        {
-            std::cout << j << " ";
+            Node* item = pop();
+            temp->push(item->data);
+            std::cout << item->data << " ";
         }
         std::cout << "\n";
+        
+        while (!temp->empty())
+        {
+            push(temp->pop()->data);
+        }
     }
 };
