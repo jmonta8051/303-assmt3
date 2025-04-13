@@ -43,16 +43,20 @@ int main()
 
     //      LINKED LIST QUEUE INSERTION SORT
 
-    std::list<int> numbers;
+    // std::list<int> numbers;
 
-    numbers.push_back(8);
-    numbers.push_back(6);
-    numbers.push_back(7);
-    numbers.push_back(3);
-    numbers.push_back(9);
-    numbers.push_back(2);
+    // numbers.push_back(8);
+    // numbers.push_back(6);
+    // numbers.push_back(7);
+    // numbers.push_back(3);
+    // numbers.push_back(9);
+    // numbers.push_back(2);
 
-    insertion_sort(numbers);
+    // insertion_sort(numbers);
+
+    // std::list<int>::iterator iter = numbers.begin();
+    // for (iter; iter != numbers.end(); ++iter) { std::cout << *iter << " "; }
+    // std::cout << "\n\n";
 
 
 }

@@ -1,7 +1,7 @@
 #include "Functions.h"
 
 template <typename T>
-int linear_search(std::vector<T>& items, T& target, size_t pos_last) 
+int linear_search(std::vector<T>& items, T& target, size_t pos_last) //Replaced all firsts with last and reversed the logic.
 {
     if (pos_last == -1)
         return -1;
@@ -14,26 +14,39 @@ int linear_search(std::vector<T>& items, T& target, size_t pos_last)
 }
 
 
-void insertion_sort(std::list<int> data) 
+void insertion_sort(std::list<int> &data) //Basically the same just replaced all the declared integers with the dereference of the iterator that should've been there.
 {
     int i, j, key;
+    std::list<int>::iterator iter1, iter2, iter3;
     bool insertionNeeded = false;
-    for (j = 1; j < data.size(); j++) 
+    for (j = 1; j < data.size(); j++)
     {
-        std::list<int>::iterator iter = data.begin() + j; //figure out why this aint workin'
-        key = *(iter);
+        iter1 = data.begin();
+        for (int k = 0; k < j; ++k) { ++iter1; }
+        
+        key = *iter1;
         insertionNeeded = false;
+
         for (i = j - 1; i >= 0; i--)
         {
-            if (key < num[i]) 
+            iter2 = data.begin(); iter3 = data.begin();
+            for (int k = 0; k < i; ++k) { ++iter2; ++iter3; } 
+            ++iter3;
+
+            if (key < *iter2) 
             {
-                num[i + 1] = num[i]; // larger values move right
+                *iter3 = *iter2; // larger values move right
                 insertionNeeded = true;
             }
-            else
+
+            else 
+            {
+                ++iter3;
                 break;
+            }
         }
+        --iter3;
         if (insertionNeeded)
-            num[i + 1] = key; //Put key into its proper location
+            *iter3 = key; //Put key into its proper location
     }
 }
